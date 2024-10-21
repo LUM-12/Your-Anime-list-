@@ -11,3 +11,11 @@ body{
   font-family: sans-serif ;
 }
 
+.bg-img{
+  position: absolute ;
+  background-image: url('/Images/images.jpeg');
+  width: 100%;
+  background-size: cover;
+  background-repeat : no-repeat;
+    
+}

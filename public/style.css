@@ -18,7 +18,7 @@ body{
   background-repeat: no-repeat;
 }
 .section{
-  margin: 15px 10px;
+  margin: 45px 15px 10px 10px;
   padding: 10px 0;
   text-align: center;
   background-color: #FFFFFF17;
@@ -28,6 +28,11 @@ body{
   font-family:'raleway', 'caveat' ;
   
 }
+
+.gif-top{
+  width: 20%;
+  mix-blend-mode: screen;
+}
 header{
   background-color: #FFFFFF17;
   padding: 10px;
@@ -36,7 +41,11 @@ header{
   color: #6A0DAD;
   border-radius: 8px;
   border: 1px solid #9A4DFF;
-  font-family: 'caveat', sans-serif 
+  font-family: 'caveat', sans-serif;
+  display: flex;
+  align-items : center;
+  justify-content :space-around ;
+  
 }
 .navigation {
   margin: 12px 3px;
