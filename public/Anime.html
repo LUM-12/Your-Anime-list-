@@ -15,19 +15,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@300&family=Raleway:wght@300&family=Roboto:wght@300&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
   
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="page.css">
   <title>Frieren</title>
 </head>
 
 <body>
-<div class="bg-img">
-  <header>
+  <div class="sidebar" id="mySidebar">
+    <div class="closebtn">
+      <i id="closeIT" class="fas fa-close" onclick="closeIt()"></i>
+    </div>
+    <div class="nav-list">
+      <ul id="nav-ul">
+      <a href="profile"><i class="fas fa-user custom-icon"></i>Profile</a>  
+      <a href="watchlist"><i class="fas fa-list custom-icon"></i> watchlist</a>
+      <a href="watch-later"><i class="fas fa-clock custom-icon "></i> watch-later</a>
+      <a href="favourites"><i class="fas fa-heart custom-icon "></i>favourites</a>
+      <a href="schedule"><i class="fas fa-calendar-alt custom-icon"></i> schedule</a>
+      <a href="#"><i class="fas fa-info-circle custom-icon"></i> About Me</a>
+      <a href="characters"><i class="fas fa-user-friends custom-icon"></i> characters</a>
+      <a href="AnimeNews"><i class="fas fa-newspaper custom-icon"></i> Anime News</a>
+      
+      </ul>
+    </div>
+  </div>
+  
+<div class="top-bar" >
+ <header>
+   <img src="https://media.tenor.com/uHK5DPlIJtwAAAAM/shigure-ui-dance.gif" alt="GIF" class="gif-top">
   <h1>Y A L</h1>
+  <img src="https://media.tenor.com/a-zRRXgJoOEAAAAM/shigure-ui-dance.gif" alt="GIF" class="gif-top">
 </header>
+<div class="navigation">
+  <input type="text" id="search" placeholder="Search your anime"/>
+  <i class="fas fa-search custom-icon"></i>
+  <i class="fas fa-bars custom-icon" onclick="openNav() "></i>
+</div>
+
+</div>
+
+<div class="anime-container">
+  <img src="" alt="">
 </div>
 
 
 
+
+
+
+
+
+
+
+
+
+<div class="holder">
+  
+</div>
+
+<script src="anime.js"></script>
+<script src="Main.js"></script>
 </body>
 
 </html>

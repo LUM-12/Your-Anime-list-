@@ -32,7 +32,13 @@ async function getTopAnime(){
     const img = document.querySelectorAll('.sprites1');
   
     img.forEach((img, index) => {
-      img.src = anime[index].images.jpg.image_url 
+      img.src = anime[index].images.jpg.image_url ;
+    img.alt = anime[index].title;
+    
+    img.addEventListener('click', () => {
+        const animeId = img.alt;
+        window.location.href = `Anime.html?id=${animeId}`;
+    });
   })
   
     const cards = document.querySelectorAll('.title-cover');
@@ -55,7 +61,7 @@ async function getTopAnime(){
     const anime2 = data2.data
     const img2 = document.querySelectorAll('.sprites2')
     img2.forEach((img2, index) =>{
-      img2.src = anime2[index].images.jpg.image_url 
+      img2.src = anime2[index].images.jpg.image_url
     })
     
     
@@ -74,6 +80,10 @@ async function getTopAnime(){
     img3.forEach((img3, index) => {
       
       img3.src = anime3[index].images.jpg.image_url
+      
+      
+      
+
     })
     
     
@@ -83,9 +93,10 @@ async function getTopAnime(){
 
 }
 
+//anime details page 
 
 
 
-for (var i = 0; i < 100; i++) {
+/*for (var i = 0; i < 100; i++) {
   console.log(i+1, 'wong')
-}
+}*/
