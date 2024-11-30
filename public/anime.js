@@ -13,6 +13,11 @@ const query = `
         english
         native
       }
+      season
+      coverImage{
+        large 
+        medium
+      }
     }
   }
 `;
@@ -31,7 +36,18 @@ fetch('https://graphql.anilist.co', {
   })
 })
 .then(response => response.json())
-.then(data => console.log(data))
+.then(data => {
+  console.log(data)
+  
+  const coverImg = document.getElementById('cover');
+  const titleRomaji = document.getElementById('romaji');
+  const titleEnglish = document.getElementById('english')
+  
+  coverImg.src = data.data.Media.coverImage.large;
+  titleRomaji.textContent = data.data.Media.title.romaji;
+  titleEnglish.textContent = data.data.Media.title.english;
+  
+} ) 
 .catch(error => console.error(error));
 
 
