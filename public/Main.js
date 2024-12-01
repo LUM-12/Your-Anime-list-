@@ -87,8 +87,8 @@ async function getTopAnime(){
     const img3 = document.querySelectorAll('.sprites3');
     img3.forEach((img3, index) => {
       
-      img3.src = anime3[index].images.jpg.image_url
-      img.alt3 = anime3[index].title;
+      img3.src = anime3[index].images.jpg.image_url;
+      img3.alt = anime3[index].title;
       
     img3.addEventListener('click', () => {
         const animeId = img3.alt;
