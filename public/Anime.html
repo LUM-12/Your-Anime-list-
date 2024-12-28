@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
   
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
   
@@ -47,8 +47,8 @@
   <img src="https://media.tenor.com/a-zRRXgJoOEAAAAM/shigure-ui-dance.gif" alt="GIF" class="gif-top">
 </header>
 <div class="navigation">
-  <input type="text" id="search" placeholder="Search your anime"/>
-  <i class="fas fa-search custom-icon"></i>
+  <input type="text" id="search" placeholder="Search your anime" />
+  <i class="fas fa-search custom-icon" id="searchBtn"></i>
   <i class="fas fa-bars custom-icon" onclick="openNav() "></i>
 </div>
 
@@ -61,31 +61,25 @@
 <section class="animeGlance">
   <div class="title-bar">
     <h5 class="romaji" id="romaji">sousou no frieren</h5>
-    <h6 class="English" id="english">Frieren beyond the journey </h6>
+    <h6 class="English" id="jap-title">Frieren beyond the journey </h6>
   </div>
-  
+  <div class="Jap-title" style="
+  width: 100%;
+  background-color :#FFFFFF17;
+  text-align: center;
+  margin:15px 0px;
+  ">
+    <h3 id="english"></h3>
+  </div>
   <div class="coverPic">
-    <img class="coverImg" src="/Images/images.jpeg" alt="title" id="cover">
+    <img class="coverImg" src="" alt="title" id="cover">
   </div>
   <div class="info-sec">
+    <div class="describe">
+      <h5>Synopsis</h5>
+      <p id="description"></p>
+    </div>
     
-    <table>
-      <tr>
-        <td>Rating</td>
-        <td>8.7</td>
-        <td> hello</td>
-      </tr>
-      <tr>
-        <td>Rating</td>
-        <td>8.7</td>
-        <td> hello</td>
-      </tr>
-    </table>
-    <table>
-     <tr>
-       
-     </tr> 
-    </table>
 
     
   </div>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeScraper API Test - Batch Character Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .result ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Batch Character Search - AnimeScraper API</h1>
+    
+    <!-- Form to input character names -->
+    <h3>Search Characters</h3>
+    <input type="text" id="characterNames" placeholder="Enter character names separated by commas">
+    <button onclick="searchBatchCharacter()">Search</button>
+    
+    <!-- Section to display the results -->
+    <div id="result" class="result"></div>
+
+    <script>
+        async function searchBatchCharacter() {
+            const characterNames = document.getElementById('characterNames').value.trim();
+            if (!characterNames) {
+                alert('Please enter at least one character name');
+                return;
+            }
+
+            // Split the input into a list of names
+            const namesArray = characterNames.split(',').map(name => name.trim()).filter(name => name.length > 0);
+            if (namesArray.length === 0) {
+                alert('Please enter valid character names');
+                return;
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Loading...';
+
+            try {
+                // Constructing the URL with each character name as a separate query parameter
+                const url = `http://127.0.0.1:8000/search-batch-character/?${namesArray.map(name => `character_names=${encodeURIComponent(name)}`).join('&')}`;
+
+                // Fetching character data from the API
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Characters not found');
+                }
+                const data = await response.json();
+
+                // Display the fetched character data
+                resultDiv.innerHTML = `
+                    <h4>Character Details:</h4>
+                    <ul>
+                        ${data.map(character => `
+                            <li>
+                                <strong>Name:</strong> ${character.name} <br>
+                                <strong>about:</strong> ${character.about} <br>
+                                <strong>description:</strong> ${character.description} <br>
+                                <strong>URL:</strong> <a href="${character.url}" target="_blank">Link to Character</a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

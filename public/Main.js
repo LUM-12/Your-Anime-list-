@@ -136,3 +136,14 @@ console.log(a)
 const result = moveZeros(a);
 console.log(result); // Output: [7, 7, 46, 68, 0, 0]
 */
+
+
+
+
+fetch('http://127.0.0.1:8000/topanime')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Default Top Anime List:', data);
+  })
+  
+  
