@@ -155,55 +155,88 @@ if (currentPage.includes('Anime.html')) {
   const search = document.getElementById('searchBtn');
   search.addEventListener('click', () => {
     
-    const searchTitle = document.getElementById('search').value;
-    // Redirect to the second page with the title as a query parameter
-    window.location.href = `searchResult.html?title=${encodeURIComponent(searchTitle)}`;
+  const searchTitle = document.getElementById('search').value;
+// Redirect to the second page with the title as a query parameter
+  window.location.href = `searchResult.html?title=${encodeURIComponent(searchTitle)}`;
   });
 }
 
 // Code for the second page
 if (currentPage.includes('searchResult.html')) {
   document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchTitle = urlParams.get('title');
     
-    if (searchTitle) {
-      const letSearch = `https://api.jikan.moe/v4/anime?q=${searchTitle}&sfw=true`;
-      
-      fetch(letSearch)
-        .then(response => response.json())
-        .then(data => {
-          const listItems = document.querySelectorAll('.list-item'); // Select all list-item divs
+  const urlParams = new URLSearchParams(window.location.search);
+   const searchTitle = urlParams.get('title');
+    
+  if (searchTitle) {
+    
+    const letSearch = `https://api.jikan.moe/v4/anime?q=${searchTitle}&sfw=true`;
+  
+  
+  fetch(letSearch)
+    .then(response => response.json())
+    .then(data => {
+      const listContainer = document.querySelector('.list-container');
 
-          // Loop through both the data array and list-items
-          data.data.forEach((anime, index) => {
-            if (index < listItems.length) { // Ensure we don't exceed available list-items
-              const listItem = listItems[index];
+      if (!data || !data.data || !Array.isArray(data.data)) {
+        console.error('Invalid data structure:', data);
+        return;
+      }
 
-              // Update the image
-              const image = listItem.querySelector('.s-cover');
-              if (image) {
-                image.src = anime.images?.jpg?.image_url || '/Images/default.jpeg'; // Use a default image if not available
-                image.alt = anime.title || 'Anime Image';
-              }
+      // Clear any existing list items
+      listContainer.innerHTML = '';
 
-              // Update the English title
-              const englishTitle = listItem.querySelector('.e_title');
-              if (englishTitle) {
-                englishTitle.textContent = anime.title || 'No English title found';
-              }
+      // Loop through the fetched data and dynamically create list items
+      data.data.forEach(anime => {
+        // Create list item container
+        const listItem = document.createElement('div');
+        listItem.className = 'list-item';
+        
+        // Create image container
+        const sTitleCover = document.createElement('div');
+        sTitleCover.className = 's-titleCover';
 
-              // Update the Japanese title
-              const japaneseTitle = listItem.querySelector('.j_title');
-              if (japaneseTitle) {
-                japaneseTitle.textContent = anime.title_japanese || 'No Japanese title found';
-              }
-            }
-          });
-        })
-        .catch(error => {
-          console.error('Error fetching anime data:', error);
+        const image = document.createElement('img');
+        image.className = 's-cover';
+        image.src = anime.images?.jpg?.image_url || '/Images/default.jpeg';
+        image.alt = anime.title || 'Anime Image';
+
+        sTitleCover.appendChild(image);
+
+        // Create title container
+        const sTitle = document.createElement('div');
+        sTitle.className = 's-title';
+
+        const englishTitle = document.createElement('h6');
+        englishTitle.className = 'e_title';
+        englishTitle.textContent = anime.title || 'No English title found';
+
+        const japaneseTitle = document.createElement('p');
+        japaneseTitle.className = 'j_title';
+        japaneseTitle.textContent = anime.title_japanese || 'No Japanese title found';
+
+        sTitle.appendChild(englishTitle);
+        sTitle.appendChild(japaneseTitle);
+
+        // Append the created elements to the list item
+        listItem.appendChild(sTitleCover);
+        listItem.appendChild(sTitle);
+
+        // Add a click event listener to redirect to anime.js
+        listItem.addEventListener('click', () => {
+          const animeId = anime.mal_id; // Assuming `mal_id` uniquely identifies the anime
+          window.location.href = `anime.js?id=${animeId}`;
         });
+
+        // Append the list item to the container
+        listContainer.appendChild(listItem);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching anime data:', error);
+    });  
+    
+        
     } else {
       console.log('No title provided.');
     }
