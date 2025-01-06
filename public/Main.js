@@ -1,11 +1,4 @@
-/*const url = 'https://api.jikan.moe/v4/recommendations/anime';
-const topAnimeUrl = 'https://api.jikan.moe/v4/top/anime';
 
-const seasonAnime = 'https://api.jikan.moe/v4/seasons/now'
-fetch(url)
-.then(response => response.json())
-.then(data => console.log(data))
-*/
 const menu = document.getElementById('mySidebar');
 const collapse = document.getElementById('closeIT')
 function openNav() {
@@ -136,14 +129,3 @@ console.log(a)
 const result = moveZeros(a);
 console.log(result); // Output: [7, 7, 46, 68, 0, 0]
 */
-
-
-
-
-fetch('http://127.0.0.1:8000/topanime')
-  .then(response => response.json())
-  .then(data => {
-    console.log('Default Top Anime List:', data);
-  })
-  
-  
