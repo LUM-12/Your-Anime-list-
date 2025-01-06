@@ -46,7 +46,7 @@ async function getTopAnime(){
 
   try {
     // Second fetch call
-    const seasonAnime2 = 'https://api.jikan.moe/v4/seasons/2024/fall';
+    const seasonAnime2 = 'https://api.jikan.moe/v4/seasons/now';
     const response2 = await fetch(seasonAnime2);
     const data2 = await response2.json();
     console.log('Data from second API:', data2);
